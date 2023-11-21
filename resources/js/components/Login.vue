@@ -40,8 +40,8 @@
 </template>
 
 <script setup>
-  import axios from "axios"
-  
+  import axios from 'axios';
+
   import { useRouter } from 'vue-router';
   const router = useRouter() 
 
@@ -49,7 +49,7 @@
 
     const   handleLogin=async()=> { 
      await axios.get('/sanctum/csrf-cookie').then(response => {
-                axios.post('http://localhost:8000/login', user)
+                axios.post('/login', user)
                       .then((response) => {
                         axios.get('/api/user').then(({data})=>{ console.log(data)})
                          router.push("/")

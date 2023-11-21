@@ -6,6 +6,7 @@
                     <router-link to="/" class="nav-item nav-link">Dashboard</router-link>
                     <router-link to="/login" class="nav-item nav-link">Login</router-link>
                     <router-link to="/register" class="nav-item nav-link">Register</router-link>
+                    <button @click="logout">Logout</button>
                 </div>
             </div>
         </nav>
@@ -13,6 +14,21 @@
     </div>
 </template>
  
-<script>
-    export default {}
+<script setup>
+import axios from 'axios';
+
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+const   logout=async()=> { 
+     await axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.post('/logout')
+                      .then((response) => {
+                        console.log(response)
+                          router.push("/login")
+                      })
+                      .catch(err => {console.log(err);alert(err) })
+                 
+           })
+        }
 </script>
