@@ -66,9 +66,9 @@
     const  handleSubmit=async()=> {
       await  axios.get('/sanctum/csrf-cookie')
       .then(response => {
-        axios.post('http://localhost:8000/api/auth/register', user)
+        axios.post('http://localhost:8000/register', user)
                   .then(response => {
-                    
+                    console.log(response)
                           router.push({ name: 'login' })
                    
                    })

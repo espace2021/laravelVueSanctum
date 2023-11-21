@@ -48,14 +48,14 @@
       let  user= {}
 
     const   handleLogin=async()=> { 
-       await axios.get('/sanctum/csrf-cookie').then(response => {
-                axios.post('http://localhost:8000/api/auth/login', user)
-                      .then(response => (
-                        
-                         router.push({ name: 'dashboard' })
-                      ))
+     await axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.post('http://localhost:8000/login', user)
+                      .then((response) => {
+                        axios.get('/api/user').then(({data})=>{ console.log(data)})
+                         router.push("/")
+                      })
                       .catch(err => {console.log(err);alert(err) })
                  
-            })
+           })
         }
   </script>
