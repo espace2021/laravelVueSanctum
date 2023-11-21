@@ -21,6 +21,7 @@ export const routes = [
                 name: "dashboard",
                 path: '/',
                 component: Dashboard,
+                meta:{isAuth:true}
    }
       
 ]

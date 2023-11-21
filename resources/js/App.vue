@@ -25,7 +25,8 @@ const   logout=async()=> {
                 axios.post('/logout')
                       .then((response) => {
                         console.log(response)
-                          router.push("/login")
+                        localStorage.removeItem("user")
+                        router.push("/login")
                       })
                       .catch(err => {console.log(err);alert(err) })
                  

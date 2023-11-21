@@ -51,10 +51,15 @@
      await axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post('/login', user)
                       .then((response) => {
-                        axios.get('/api/user').then(({data})=>{ console.log(data)})
+                        axios.get('/api/user').then(({data})=>{ 
+                            localStorage.setItem('user',data.name)
+                           console.log(localStorage.getItem('user')   )                 
+                        })
                          router.push("/")
                       })
-                      .catch(err => {console.log(err);alert(err) })
+                      .catch(err => {console.log(err);
+                       if(err.response.status=== 422) alert("utilisateur non enregistré") 
+                    })
                  
            })
         }
